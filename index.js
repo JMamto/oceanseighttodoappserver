@@ -43,7 +43,7 @@ app.post('/todos', async(req, res) =>{
 
         const query = await pool.query(queryText,dataQuery);
 
-
+        console.log(query.rows)
         await pool.query(`call oceanseight_todo.addRelation($1, $2);`, [data.uid, query.rows[0].todo_id])
         
         res.json(query.rows);
